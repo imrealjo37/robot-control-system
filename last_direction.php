@@ -1,13 +1,13 @@
 <?php
-// الاتصال بقاعدة البيانات
+// Connect to the database
 $conn = new mysqli("localhost", "root", "", "robot_control");
 
-// تحقق من الاتصال
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// استرجاع آخر اتجاه
+// Query to fetch the last direction
 $sql = "SELECT direction, timestamp FROM directions ORDER BY id DESC LIMIT 1";
 $result = $conn->query($sql);
 
@@ -19,6 +19,6 @@ if ($result->num_rows > 0) {
     echo "No directions found.";
 }
 
-// إغلاق الاتصال
+// Close the connection
 $conn->close();
 ?>
